@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nome_do_cargo');
             $table->decimal('valor_do_salario', 10, 2);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

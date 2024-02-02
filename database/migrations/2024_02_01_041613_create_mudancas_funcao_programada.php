@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('mudancas_funcao_programada', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('colaborador_id')->constrained('pessoas');
-            $table->string('novo_cargo');
+            $table->foreignId('pessoa_id')->constrained('pessoas');
+            $table->foreignId('novo_cargo_id')->constrained('cargos');
             $table->date('data_troca');
-            $table->string('status');
+            $table->enum('status', ['Pendente', 'Concluido'])->default('Pendente');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('observacoes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('colaborador_id')->constrained('pessoas');
+            $table->foreignId('pessoa_id')->constrained('pessoas');
             $table->text('anotacao');
             $table->string('usuario');
             $table->dateTime('data_hora');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

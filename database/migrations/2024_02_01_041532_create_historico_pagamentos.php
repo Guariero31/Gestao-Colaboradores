@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('historico_pagamentos', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('colaborador_id')->constrained('pessoas');
+            $table->foreignId('pessoa_id')->constrained('pessoas');
             $table->date('data_de_pagamento');
             $table->decimal('valor_do_salario', 10, 2);
             $table->string('cargo_colaborador_data');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
