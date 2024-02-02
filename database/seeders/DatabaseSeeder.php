@@ -17,5 +17,7 @@ class DatabaseSeeder extends Seeder
         $this ->call(CargosSeeder::class);
         $this ->call(PessoaSeeder::class);
         $this ->call(HistoricoPagamentoSeeder::class);
+        $this ->call(ObservacoesSeeder::class);
+        $this ->call(MudancasFuncaoProgramadaSeeder::class);
     }
 }
