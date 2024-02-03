@@ -15,8 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('pessoa_id')->constrained('pessoas');
             $table->text('anotacao');
-            $table->string('usuario');
-            $table->dateTime('data_hora');
+            $table->string('usuario')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

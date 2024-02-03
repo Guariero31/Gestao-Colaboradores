@@ -3,7 +3,9 @@
 namespace Database\Seeders;
 
 use App\Models\Observacoes;
+use Database\Factories\ObservacoesFactory;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
 
 class ObservacoesSeeder extends Seeder
@@ -13,6 +15,8 @@ class ObservacoesSeeder extends Seeder
      */
     public function run(): void
     {
-        Observacoes::factory(15)->create();
+        Model::withoutEvents(function() {
+            Observacoes::factory(10)->create();
+        });
     }
 }

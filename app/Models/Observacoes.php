@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Auth;
 
 class Observacoes extends Model
 {
@@ -14,10 +15,18 @@ class Observacoes extends Model
     protected $fillable = [
         'anotacao',
         'usuario',
-        'data_hora',
     ];
     
-    public function cargo() {
-        return $this -> belongsTo(Cargo::class);
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function($model) {
+            $model->Pessoa = Auth::user()->id;
+        });
+    }
+
+    public function pessoa() {
+        return $this -> belongsTo(Pessoa::class);
     }
 }
