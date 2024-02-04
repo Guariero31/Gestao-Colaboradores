@@ -4,10 +4,10 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\ObservacoesResource\Pages;
 use App\Filament\Resources\ObservacoesResource\RelationManagers;
-use App\Models\Observacoes;
+use App\Models\Observacao;
 use App\Models\Pessoa;
 use Filament\Forms;
-use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\MarkdownEditor;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
@@ -20,7 +20,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class ObservacoesResource extends Resource
 {
-    protected static ?string $model = Observacoes::class;
+    protected static ?string $model = Observacao::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -33,7 +33,7 @@ class ObservacoesResource extends Resource
                     ->placeholder("Selecione um Colaborador")
                     ->options(Pessoa::all()->pluck('nome','id'))
                     ->searchable(),
-                RichEditor::make('anotacao')->label("Observação")->placeholder("Digite aqui as observações desejadas")
+                    MarkdownEditor::make('anotacao')->label("Observação")->placeholder("Digite aqui as observações desejadas")
             ]);
     }
 
@@ -41,7 +41,7 @@ class ObservacoesResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('Pessoa.nome')->label("Nome Colaborador"),
+                TextColumn::make('pessoas.nome')->label("Nome Colaborador"),
             ])
             ->filters([
                 //

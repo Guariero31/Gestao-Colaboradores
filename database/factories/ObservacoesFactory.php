@@ -18,8 +18,7 @@ class ObservacoesFactory extends Factory
         return [
             'anotacao'  => $this->faker->paragraph,
             'usuario' => $this->faker->name,
-            'pessoa_id' => Pessoa::puck('id')->random(),
-            'pessoa_id' => Pessoa::factory()->create()->id, // Crie uma nova pessoa e use o ID dela como pessoa_id
+            'pessoa_id' => Pessoa::pluck('id')->random(),
         ];
     }
 }

@@ -33,7 +33,7 @@ class PessoaResource extends Resource
                 TextInput::make('nome')->label("Colaborador")->required(),
                 PhoneNumber::make('telefone')->label("Telefone")->required(),
                 Document::make('cpf')->label("CPF")->required()->dynamic(),
-                FileUpload::make('foto_perfil')->label("Foto de Perfil"),
+                FileUpload::make('foto_perfil')->label("Foto de Perfil")->avatar(),
             ]);
     }
 
@@ -44,7 +44,6 @@ class PessoaResource extends Resource
                 TextColumn::make('nome')->label("Nome Colaborador"),
                 TextColumn::make('telefone')->label("Telefone"),
                 TextColumn::make('cpf')->label("CPF"),
-                //TextColumn::make('cargo_id')->label("Cargo")->formatStateUsing(fn($record):string=>$record->cargo->nome_do_cargo),
                 TextColumn::make("cargo.nome_do_cargo")->label("Cargo")
             ])
             ->filters([

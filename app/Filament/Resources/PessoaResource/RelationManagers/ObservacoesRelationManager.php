@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\PessoaResource\RelationManagers;
 
 use Filament\Forms;
+use Filament\Forms\Components\MarkdownEditor;
 use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
@@ -18,7 +19,7 @@ class ObservacoesRelationManager extends RelationManager
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('anotacao')
+                MarkdownEditor::make('anotacao')->label("Observação")->placeholder("Digite aqui as observações desejadas")
                     ->required()
                     ->maxLength(255),
             ]);
@@ -27,7 +28,6 @@ class ObservacoesRelationManager extends RelationManager
     public function table(Table $table): Table
     {
         return $table
-            ->recordTitleAttribute('anotacao')
             ->columns([
                 Tables\Columns\TextColumn::make('anotacao'),
             ])

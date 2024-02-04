@@ -22,6 +22,6 @@ class Pessoa extends Model
     }
 
     public function Observacoes() {
-        return $this->hasMany(Observacoes::class);
+        return $this->hasMany(Observacao::class);
     }
 }
