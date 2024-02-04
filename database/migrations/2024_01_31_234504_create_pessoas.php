@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('cpf')->unique();
             $table->string('telefone');
             $table->string('foto_perfil')->nullable();
-            $table->foreignId('cargo_id')->constrained('cargos');
+            $table->foreignId('cargo_id')->constrained('cargos')->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();
         });

@@ -20,4 +20,8 @@ class Pessoa extends Model
     public function cargo() {
         return $this -> belongsTo(Cargo::class);
     }
+
+    public function Observacoes() {
+        return $this->hasMany(Observacoes::class);
+    }
 }

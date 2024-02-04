@@ -2,8 +2,10 @@
 
 namespace App\Filament\Resources;
 
+
 use App\Filament\Resources\PessoaResource\Pages;
 use App\Filament\Resources\PessoaResource\RelationManagers;
+use App\Filament\Resources\PessoaResource\RelationManagers\ObservacoesRelationManager;
 use App\Models\Pessoa;
 use Leandrocfe\FilamentPtbrFormFields\PhoneNumber;
 use Filament\Forms;
@@ -43,7 +45,7 @@ class PessoaResource extends Resource
                 TextColumn::make('telefone')->label("Telefone"),
                 TextColumn::make('cpf')->label("CPF"),
                 //TextColumn::make('cargo_id')->label("Cargo")->formatStateUsing(fn($record):string=>$record->cargo->nome_do_cargo),
-                TextColumn::make('cargo.nome_do_cargo')->label("Cargo")
+                TextColumn::make("cargo.nome_do_cargo")->label("Cargo")
             ])
             ->filters([
                 //
@@ -61,7 +63,7 @@ class PessoaResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            RelationManagers\ObservacoesRelationManager::class,
         ];
     }
 

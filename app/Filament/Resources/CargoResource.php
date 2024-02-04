@@ -38,7 +38,7 @@ class CargoResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('nome_do_cargo')->label("Cargo"),
-                TextColumn::make('valor_do_salario'),
+                TextColumn::make('valor_do_salario')->label("Salario"),
             ])
             ->filters([
                 //

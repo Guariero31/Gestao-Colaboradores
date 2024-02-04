@@ -11,22 +11,9 @@ class Observacoes extends Model
 {
     use HasFactory, SoftDeletes;
 
-
     protected $fillable = [
         'anotacao',
         'usuario',
+        'pessoa_id',
     ];
-    
-    protected static function boot()
-    {
-        parent::boot();
-
-        static::creating(function($model) {
-            $model->Pessoa = Auth::user()->id;
-        });
-    }
-
-    public function pessoa() {
-        return $this -> belongsTo(Pessoa::class);
-    }
 }

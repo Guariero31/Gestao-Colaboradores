@@ -41,7 +41,7 @@ class ObservacoesResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('pessoa.nome')->label("Nome Colaborador"),
+                TextColumn::make('Pessoa.nome')->label("Nome Colaborador"),
             ])
             ->filters([
                 //
