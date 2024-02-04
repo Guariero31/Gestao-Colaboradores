@@ -6,7 +6,7 @@ use App\Models\Observacoes;
 use App\Models\Pessoa;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class ObservacoesFactory extends Factory
+class ObservacaoFactory extends Factory
 {
     /**
      * Define the model's default state.
