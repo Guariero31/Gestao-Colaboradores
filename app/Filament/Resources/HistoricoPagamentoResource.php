@@ -28,14 +28,9 @@ class HistoricoPagamentoResource extends Resource
     {
         return $form
             ->schema([
-                Card::make()->schema([
-                    Grid::make(['default' => 0])->schema([
-                        TextInput::make('data_de_pagamento')->label("Data do pagamento")->required(),
-                        Money::make('valor_do_salario')->label("Salario")->required(),
-                        TextInput::make('cargo_colaborador_data')->label("Cargo")->required(),
-                    ]),
-                ])
-
+                TextInput::make('data_de_pagamento')->label("Data do pagamento")->required()->disabled(),
+                Money::make('valor_do_salario')->label("Salario")->required()->disabled(),
+                TextInput::make('cargo_colaborador_data')->label("Cargo")->required()->disabled(),
             ]);
     }
 
