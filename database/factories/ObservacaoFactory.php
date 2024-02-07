@@ -18,7 +18,7 @@ class ObservacaoFactory extends Factory
         return [
             'anotacao'  => $this->faker->paragraph,
             'usuario' => $this->faker->name,
-            'pessoa_id' => Pessoa::pluck('id')->random(),
+            'pessoa_id' => Pessoa::pluck('nome','id')->random(),
         ];
     }
 }

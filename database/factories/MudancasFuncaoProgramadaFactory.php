@@ -21,7 +21,7 @@ class MudancasFuncaoProgramadaFactory extends Factory
         return [
             'data_troca' => $this->faker->dateTime(),
             'status' => $this->faker->randomElement(['Pendente', 'Concluido']),
-            'pessoa_id' => Pessoa::pluck('id')->random(),
+            'pessoa_id' => Pessoa::pluck('nome','id')->random(),
             'novo_cargo_id' => Cargo::pluck('id')->random(),
         ];
     }

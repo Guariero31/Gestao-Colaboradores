@@ -21,7 +21,8 @@ class ObservacoesRelationManager extends RelationManager
             ->schema([
                 MarkdownEditor::make('anotacao')->label("Observação")->placeholder("Digite aqui as observações desejadas")
                     ->required()
-                    ->maxLength(255),
+                    ->columnSpan(4)
+                    ->minLength(1),
             ]);
     }
 
@@ -29,7 +30,7 @@ class ObservacoesRelationManager extends RelationManager
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('anotacao'),
+                Tables\Columns\TextColumn::make('anotacao')->label("Observações")->words(10),
             ])
             ->filters([
                 //
@@ -38,6 +39,7 @@ class ObservacoesRelationManager extends RelationManager
                 Tables\Actions\CreateAction::make(),
             ])
             ->actions([
+                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
             ])

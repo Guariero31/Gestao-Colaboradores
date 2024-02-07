@@ -16,7 +16,7 @@ class HistoricoPagamento extends Model
         'cargo_colaborador_data',
     ];
 
-    public function Pessoa(){
+    public function pessoa(){
         return $this -> belongsTo(Pessoa::class);
     }
 }

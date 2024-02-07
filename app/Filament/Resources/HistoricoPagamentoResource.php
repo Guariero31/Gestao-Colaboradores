@@ -22,15 +22,27 @@ class HistoricoPagamentoResource extends Resource
 {
     protected static ?string $model = HistoricoPagamento::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?int $navigationSort = 3;
+    protected static ?string $navigationIcon = 'heroicon-o-banknotes';
 
+    protected static ?string $navigationLabel ="Histórico de Pagamentos";
     public static function form(Form $form): Form
     {
         return $form
+
             ->schema([
-                TextInput::make('data_de_pagamento')->label("Data do pagamento")->required()->disabled(),
-                Money::make('valor_do_salario')->label("Salario")->required()->disabled(),
-                TextInput::make('cargo_colaborador_data')->label("Cargo")->required()->disabled(),
+                Forms\Components\DatePicker::make('data_de_pagamento')
+                    ->label("Data do Pagamento")
+                    ->required()
+                    ->disabled(fn (string $operation): bool => $operation=='edit'),
+                Money::make('valor_do_salario')
+                    ->label("Salario")
+                    ->required()
+                    ->disabled(fn (string $operation): bool => $operation=='edit'),
+                TextInput::make('cargo_colaborador_data')
+                    ->label("Cargo")
+                    ->required()
+                    ->disabled(fn (string $operation): bool => $operation=='edit'),
             ]);
     }
 
@@ -38,7 +50,13 @@ class HistoricoPagamentoResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('pessoa.nome')->label("Cargo")
+                TextColumn::make('pessoa.nome')
+                    ->label("Colaborador"),
+                TextColumn::make('valor_do_salario')
+                    ->label("Salario")
+                    ->money('BRL'),
+                TextColumn::make('data_de_pagamento')->label("Data do Pagamento")->date('d/m/Y')->searchable()->sortable(),
+                TextColumn::make('cargo_colaborador_data')->label("Cargo")->searchable()->sortable(),
             ])
             ->filters([
                 //

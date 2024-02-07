@@ -21,7 +21,7 @@ class PessoaFactory extends Factory
             'cpf' => $this->faker->unique()->numerify('###.###.###-##'),
             'telefone' => $this->faker->phoneNumber('##-#####-####'),
             'foto_perfil' => $this->faker->imageUrl(400, 400),
-            'cargo_id' => Cargo::pluck('id')->random(),
+            'cargo_id' => Cargo::pluck('nome_do_cargo','id')->random(),
         ];
     }
 }

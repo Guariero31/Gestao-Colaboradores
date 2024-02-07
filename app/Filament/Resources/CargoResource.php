@@ -4,7 +4,6 @@ namespace App\Filament\Resources;
 
 use App\Filament\Fields\Money;
 use App\Filament\Resources\CargoResource\Pages;
-use App\Filament\Resources\CargoResource\RelationManagers;
 use App\Models\Cargo;
 use Filament\Forms;
 use Filament\Forms\Components\TextInput;
@@ -20,6 +19,7 @@ use Filament\Tables\Columns\TextColumn;
 
 class CargoResource extends Resource
 {
+    protected static ?string $navigationLabel ="Cargos";
     protected static ?string $model = Cargo::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-briefcase';
@@ -28,8 +28,16 @@ class CargoResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('nome_do_cargo')->label("Nome do Cargo")->required(),
-                Money::make('valor_do_salario')->label("Salario"),
+                TextInput::make('nome_do_cargo')
+                    ->label("Nome do Cargo")
+                    ->minLength(2)
+                    ->maxLength(25)
+                    ->required()
+                    ->disabled(fn (string $operation): bool => $operation=='edit'),
+                Money::make('valor_do_salario')
+                    ->minValue(1)
+                    ->required()
+                    ->label("Salario"),
             ]);
     }
 
@@ -37,8 +45,8 @@ class CargoResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('nome_do_cargo')->label("Cargo"),
-                TextColumn::make('valor_do_salario')->label("Salario"),
+                TextColumn::make('nome_do_cargo')->label("Cargo")->searchable()->sortable(),
+                TextColumn::make('valor_do_salario')->label("Salario")->money('BRL')->searchable()->sortable(),
             ])
             ->filters([
                 //
@@ -65,7 +73,7 @@ class CargoResource extends Resource
         return [
             'index' => Pages\ListCargos::route('/'),
             'create' => Pages\CreateCargo::route('/create'),
-            'edit' => Pages\EditCargo::route('/{record}/edit'),
+            'editar' => Pages\EditCargo::route('/{record}/edit'),
         ];
     }
 }

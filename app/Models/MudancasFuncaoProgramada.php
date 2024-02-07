@@ -15,7 +15,7 @@ class MudancasFuncaoProgramada extends Model
         'status',
     ];
 
-    public function Pessoa() {
+    public function pessoa() {
         return $this -> belongsTo(Pessoa::class);
     }
     public function cargo() {

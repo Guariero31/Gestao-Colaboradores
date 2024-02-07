@@ -21,7 +21,7 @@ class Pessoa extends Model
         return $this -> belongsTo(Cargo::class);
     }
 
-    public function Observacoes() {
+    public function observacoes() {
         return $this->hasMany(Observacao::class);
     }
 }
