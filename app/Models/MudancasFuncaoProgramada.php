@@ -13,6 +13,8 @@ class MudancasFuncaoProgramada extends Model
     protected $fillable = [
         'data_troca',
         'status',
+        'cargo_id',
+        'pessoa_id'
     ];
 
     public function pessoa() {

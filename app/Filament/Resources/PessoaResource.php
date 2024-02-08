@@ -39,12 +39,15 @@ class PessoaResource extends Resource
                         TextInput::make('nome')->label("Colaborador")
                             ->required()
                             ->disabled(fn (string $operation): bool => $operation=='edit'),
+
                         PhoneNumber::make('telefone')->label("Telefone")
                             ->required(),
+
                         Document::make('cpf')->label("CPF")
                             ->required()
                             ->dynamic()
                             ->disabled(fn (string $operation): bool => $operation=='edit'),
+
                         Select::make('cargo_id')
                             ->label('Cargo')
                             ->placeholder("Selecione um cargo")
@@ -53,6 +56,7 @@ class PessoaResource extends Resource
                             ->disabled(fn (string $operation): bool => $operation=='edit')
                             ->required(),
                     ])->grow()->columns(2),
+
                     Forms\Components\Section::make([
                         FileUpload::make('foto_perfil')->label("Foto de Perfil")->alignCenter()->avatar(),
                     ])->grow(false),

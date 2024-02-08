@@ -15,6 +15,7 @@ class Pessoa extends Model
         'cpf',
         'telefone',
         'foto_perfil',
+        'cargo_id'
     ];
 
     public function cargo() {

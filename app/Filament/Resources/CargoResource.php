@@ -34,6 +34,7 @@ class CargoResource extends Resource
                     ->maxLength(25)
                     ->required()
                     ->disabled(fn (string $operation): bool => $operation=='edit'),
+
                 Money::make('valor_do_salario')
                     ->minValue(1)
                     ->required()
@@ -45,8 +46,15 @@ class CargoResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('nome_do_cargo')->label("Cargo")->searchable()->sortable(),
-                TextColumn::make('valor_do_salario')->label("Salario")->money('BRL')->searchable()->sortable(),
+                TextColumn::make('nome_do_cargo')->label("Cargo")
+                    ->searchable()
+                    ->sortable(),
+
+                TextColumn::make('valor_do_salario')
+                    ->label("Salario")
+                    ->money('BRL')
+                    ->searchable()
+                    ->sortable(),
             ])
             ->filters([
                 //

@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\MudancasFuncaoProgramadaResource\Pages;
 use App\Models\Cargo;
 use App\Models\MudancasFuncaoProgramada;
+use App\Models\Pessoa;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -30,13 +31,29 @@ class MudancasFuncaoProgramadaResource extends Resource
     {
         return $form
             ->schema([
-                DatePicker::make('date_of_birth')::make('data_troca')->label("Data da Troca de cargo")->required(),
-                TextInput::make('status')->label("Status")->disabled(),
+                DatePicker::make('data_troca')
+                    ->label("Data da Troca de cargo")
+                    ->required(),
+
+                TextInput::make('status')
+                    ->label("Status")
+                    ->disabled(),
+
+                Select::make('pessoa_id')
+                    ->label('Colaborador')
+                    ->placeholder("Selecione um cargo")
+                    ->options(Pessoa::all()->pluck('nome','id'))
+                    ->disabled(fn (string $operation): bool => $operation=='edit')
+                    ->searchable(),
+
+
                 Select::make('cargo_id')
-                    ->label('Cargos')
+                    ->label('Novo Cargo')
                     ->placeholder("Selecione um cargo")
                     ->options(Cargo::all()->pluck('nome_do_cargo','id'))
-                    ->searchable(),
+                    ->searchable()
+                    ->disabled(fn (string $operation): bool => $operation=='edit')
+                    ->required(),
             ]);
     }
 

@@ -35,10 +35,12 @@ class HistoricoPagamentoResource extends Resource
                     ->label("Data do Pagamento")
                     ->required()
                     ->disabled(fn (string $operation): bool => $operation=='edit'),
+
                 Money::make('valor_do_salario')
                     ->label("Salario")
                     ->required()
                     ->disabled(fn (string $operation): bool => $operation=='edit'),
+
                 TextInput::make('cargo_colaborador_data')
                     ->label("Cargo")
                     ->required()
@@ -52,11 +54,21 @@ class HistoricoPagamentoResource extends Resource
             ->columns([
                 TextColumn::make('pessoa.nome')
                     ->label("Colaborador"),
+
                 TextColumn::make('valor_do_salario')
                     ->label("Salario")
                     ->money('BRL'),
-                TextColumn::make('data_de_pagamento')->label("Data do Pagamento")->date('d/m/Y')->searchable()->sortable(),
-                TextColumn::make('cargo_colaborador_data')->label("Cargo")->searchable()->sortable(),
+
+                TextColumn::make('data_de_pagamento')
+                    ->label("Data do Pagamento")
+                    ->date('d/m/Y')
+                    ->searchable()
+                    ->sortable(),
+
+                TextColumn::make('cargo_colaborador_data')
+                    ->label("Cargo")
+                    ->searchable()
+                    ->sortable(),
             ])
             ->filters([
                 //
