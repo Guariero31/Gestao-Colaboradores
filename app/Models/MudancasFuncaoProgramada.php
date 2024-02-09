@@ -13,14 +13,12 @@ class MudancasFuncaoProgramada extends Model
     protected $fillable = [
         'data_troca',
         'status',
-        'cargo_id',
-        'pessoa_id'
     ];
 
     public function pessoa() {
-        return $this -> belongsTo(Pessoa::class);
+        return $this -> belongsTo(Pessoa::class, 'pessoa_id');
     }
     public function cargo() {
-        return $this -> belongsTo(Cargo::class);
+        return $this -> belongsTo(Cargo::class, 'novo_cargo_id');
     }
 }

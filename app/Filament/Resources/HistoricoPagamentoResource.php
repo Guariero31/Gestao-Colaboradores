@@ -6,6 +6,7 @@ use App\Filament\Fields\Money;
 use App\Filament\Resources\HistoricoPagamentoResource\Pages;
 use App\Filament\Resources\HistoricoPagamentoResource\RelationManagers;
 use App\Models\Cargo;
+use App\Models\Pessoa;
 use Filament\Forms\Components\Select;
 use App\Models\HistoricoPagamento;
 use Filament\Forms;
@@ -43,7 +44,7 @@ class HistoricoPagamentoResource extends Resource
                 Select::make('pessoa_id')
                     ->label('Colaborador')
                     ->placeholder("Selecione um Colaborador")
-                    ->relationship('pessoa')
+                    ->relationship('pessoa', 'nome')
                     ->required(),
 
                 TextInput::make('cargo_colaborador_data')

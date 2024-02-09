@@ -37,22 +37,19 @@ class MudancasFuncaoProgramadaResource extends Resource
 
                 TextInput::make('status')
                     ->label("Status")
+                    ->hidden(fn (string $operation): bool => $operation=='create')
                     ->disabled(),
 
                 Select::make('pessoa_id')
                     ->label('Colaborador')
-                    ->placeholder("Selecione um cargo")
-                    ->options(Pessoa::all()->pluck('nome','id'))
-                    ->disabled(fn (string $operation): bool => $operation=='edit')
-                    ->searchable(),
+                    ->placeholder("Selecione um colaborador")
+                    ->relationship('pessoa', 'nome')
+                    ->required(),
 
-
-                Select::make('cargo_id')
+                Select::make('novo_cargo_id')
                     ->label('Novo Cargo')
                     ->placeholder("Selecione um cargo")
-                    ->options(Cargo::all()->pluck('nome_do_cargo','id'))
-                    ->searchable()
-                    ->disabled(fn (string $operation): bool => $operation=='edit')
+                    ->relationship('cargo', 'nome_do_cargo')
                     ->required(),
             ]);
     }
@@ -71,25 +68,7 @@ class MudancasFuncaoProgramadaResource extends Resource
                     })
             ])
             ->filters([
-                SelectFilter::make('status')
-                    ->options(['id']),
-                Filter::make('created_at')
-                ->form([
-                    DatePicker::make('created_from'),
-                    DatePicker::make('created_until')
-                ])
-                ->query(function (Builder $query, array $data): Builder {
-                    return $query
-                        ->when(
-                            $data['created_from'],
-                            fn(Builder $query, $date): Builder => $query->whereDate('created_at', '>', $date)
-                        )
-                        ->when(
-                            $data['created_until'],
-                            fn(Builder $query, $date): Builder => $query->whereDate('created_at', '<', $date)
-                        );
-
-                    })
+               //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
