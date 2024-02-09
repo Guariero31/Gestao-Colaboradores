@@ -47,10 +47,10 @@ class HistoricoPagamentoResource extends Resource
                     ->relationship('pessoa', 'nome')
                     ->required(),
 
-                TextInput::make('cargo_colaborador_data')
+                Select::make('cargo_colaborador_data')
                     ->label("Cargo")
-                    ->required()
-                    ->disabled(fn (string $operation): bool => $operation=='edit'),
+                    ->relationship('cargo', 'nome_do_cargo')
+                    ->required(),
             ]);
     }
 

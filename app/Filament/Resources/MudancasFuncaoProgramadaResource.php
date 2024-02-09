@@ -35,11 +35,6 @@ class MudancasFuncaoProgramadaResource extends Resource
                     ->label("Data da Troca de cargo")
                     ->required(),
 
-                TextInput::make('status')
-                    ->label("Status")
-                    ->hidden(fn (string $operation): bool => $operation=='create')
-                    ->disabled(),
-
                 Select::make('pessoa_id')
                     ->label('Colaborador')
                     ->placeholder("Selecione um colaborador")
@@ -51,6 +46,11 @@ class MudancasFuncaoProgramadaResource extends Resource
                     ->placeholder("Selecione um cargo")
                     ->relationship('cargo', 'nome_do_cargo')
                     ->required(),
+
+                TextInput::make('status')
+                    ->label("Status")
+                    ->hidden(fn (string $operation): bool => $operation=='create')
+                    ->disabled(),
             ]);
     }
 
