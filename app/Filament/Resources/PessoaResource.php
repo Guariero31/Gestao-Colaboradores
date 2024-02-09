@@ -45,7 +45,7 @@ class PessoaResource extends Resource
 
                         Document::make('cpf')->label("CPF")
                             ->required()
-                            ->dynamic()
+                            ->cpf()
                             ->disabled(fn (string $operation): bool => $operation=='edit'),
 
                         Select::make('cargo_id')

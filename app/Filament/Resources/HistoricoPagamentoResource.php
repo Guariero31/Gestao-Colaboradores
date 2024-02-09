@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Fields\Money;
 use App\Filament\Resources\HistoricoPagamentoResource\Pages;
 use App\Filament\Resources\HistoricoPagamentoResource\RelationManagers;
+use App\Models\Cargo;
 use Filament\Forms\Components\Select;
 use App\Models\HistoricoPagamento;
 use Filament\Forms;
@@ -30,17 +31,20 @@ class HistoricoPagamentoResource extends Resource
     public static function form(Form $form): Form
     {
         return $form
-
             ->schema([
                 Forms\Components\DatePicker::make('data_de_pagamento')
                     ->label("Data do Pagamento")
-                    ->required()
-                    ->disabled(fn (string $operation): bool => $operation=='edit'),
+                    ->required(),
 
                 Money::make('valor_do_salario')
                     ->label("Salario")
-                    ->required()
-                    ->disabled(fn (string $operation): bool => $operation=='edit'),
+                    ->required(),
+
+                Select::make('pessoa_id')
+                    ->label('Colaborador')
+                    ->placeholder("Selecione um Colaborador")
+                    ->relationship('pessoa')
+                    ->required(),
 
                 TextInput::make('cargo_colaborador_data')
                     ->label("Cargo")
