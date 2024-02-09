@@ -58,7 +58,10 @@ class PessoaResource extends Resource
                     ])->grow()->columns(2),
 
                     Forms\Components\Section::make([
-                        FileUpload::make('foto_perfil')->label("Foto de Perfil")->alignCenter()->avatar(),
+                        FileUpload::make('foto_perfil')
+                            ->label("Foto de Perfil")
+                            ->alignCenter()
+                            ->avatar(),
                     ])->grow(false),
                 ])->from('lg')
             ])->columns(1);

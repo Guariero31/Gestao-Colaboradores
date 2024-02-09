@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Fields\Money;
 use App\Filament\Resources\HistoricoPagamentoResource\Pages;
 use App\Filament\Resources\HistoricoPagamentoResource\RelationManagers;
+use Filament\Forms\Components\Select;
 use App\Models\HistoricoPagamento;
 use Filament\Forms;
 use Filament\Forms\Components\Card;
@@ -74,7 +75,7 @@ class HistoricoPagamentoResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\ViewAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
