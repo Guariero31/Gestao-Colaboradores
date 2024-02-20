@@ -30,6 +30,8 @@ class PessoaResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-user-group';
 
     protected static ?string $navigationLabel ="Colaboradores";
+    protected static ?string $label = "Colaboradores";
+    protected static ?string $slug = 'colaboradores';
     public static function form(Form $form): Form
     {
         return $form
@@ -46,14 +48,16 @@ class PessoaResource extends Resource
                         Document::make('cpf')->label("CPF")
                             ->required()
                             ->cpf()
+                            ->unique(ignoreRecord: true)
+                            ->validationMessages([
+                                'unique' => "O CPF já está registrado!",
+                            ])
                             ->disabled(fn (string $operation): bool => $operation=='edit'),
 
                         Select::make('cargo_id')
                             ->label('Cargo')
                             ->placeholder("Selecione um cargo")
-                            ->options(Cargo::all()->pluck('nome_do_cargo','id'))
-                            ->searchable()
-                            ->disabled(fn (string $operation): bool => $operation=='edit')
+                            ->relationship('cargo', 'nome_do_cargo')
                             ->required(),
                     ])->grow()->columns(2),
 
@@ -79,7 +83,7 @@ class PessoaResource extends Resource
                 SelectFilter::make('cargo')
                     ->relationship('cargo',"nome_do_cargo")
                     ->label("Filtrar por Cargo")
-                    ->indicator("Cargo"),
+                    ->indicator("status"),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

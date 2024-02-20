@@ -27,6 +27,8 @@ class MudancasFuncaoProgramadaResource extends Resource
     protected static ?int $navigationSort = 4;
     protected static ?string $navigationIcon = 'heroicon-o-arrows-right-left';
     protected static ?string $navigationLabel ="Alterações de Cargo Agendadas";
+    protected static ?string $label = "Alterações de Cargo Agendadas";
+    protected static ?string $slug = 'alterações-cargo-agendadas';
     public static function form(Form $form): Form
     {
         return $form
@@ -68,7 +70,7 @@ class MudancasFuncaoProgramadaResource extends Resource
                     })
             ])
             ->filters([
-               //
+
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

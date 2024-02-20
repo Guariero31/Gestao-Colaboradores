@@ -21,7 +21,8 @@ class CargoResource extends Resource
 {
     protected static ?string $navigationLabel ="Cargos";
     protected static ?string $model = Cargo::class;
-
+    protected static ?string $label = "Cargos";
+    protected static ?string $slug = 'cargos';
     protected static ?string $navigationIcon = 'heroicon-o-briefcase';
 
     public static function form(Form $form): Form

@@ -20,6 +20,6 @@ class Observacao extends Model
     ];
 
     public function pessoa() {
-        return $this->hasMany(Pessoa::class);
+        return $this->belongsTo(Pessoa::class);
     }
 }

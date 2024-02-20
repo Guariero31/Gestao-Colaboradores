@@ -28,7 +28,9 @@ class HistoricoPagamentoResource extends Resource
     protected static ?int $navigationSort = 3;
     protected static ?string $navigationIcon = 'heroicon-o-banknotes';
 
-    protected static ?string $navigationLabel ="Histórico de Pagamentos";
+    protected static ?string $navigationLabel ="Pagamentos";
+    protected static ?string $label = "Historico de Pagamentos";
+    protected static ?string $slug = 'pagamentos';
     public static function form(Form $form): Form
     {
         return $form

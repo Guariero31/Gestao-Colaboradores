@@ -15,10 +15,11 @@ class Pessoa extends Model
         'cpf',
         'telefone',
         'foto_perfil',
+        'cargo_id'
     ];
 
     public function cargo() {
-        return $this -> belongsTo(Cargo::class);
+        return $this -> belongsTo(Cargo::class, 'cargo_id');
     }
 
     public function observacoes() {
