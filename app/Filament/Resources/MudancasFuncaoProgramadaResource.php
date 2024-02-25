@@ -35,7 +35,8 @@ class MudancasFuncaoProgramadaResource extends Resource
             ->schema([
                 DatePicker::make('data_troca')
                     ->label("Data da Troca de cargo")
-                    ->required(),
+                    ->required()
+                    ->default(now()),
 
                 Select::make('pessoa_id')
                     ->label('Colaborador')
